@@ -112,5 +112,6 @@ Configuration types
 .. autoclass:: Mount
 .. autoclass:: Resources
 .. autoclass:: RestartPolicy
+.. autoclass:: ServiceMode
 .. autoclass:: TaskTemplate
 .. autoclass:: UpdateConfig
