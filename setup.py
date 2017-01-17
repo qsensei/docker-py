@@ -12,19 +12,26 @@ requirements = [
     'requests >= 2.5.2, != 2.11.0',
     'six >= 1.4.0',
     'websocket-client >= 0.32.0',
-    'docker-pycreds >= 0.2.1'
+    'docker-pycreds >= 0.2.1',
+
+    # NOTE: quick hack to support older versions of setuptools
+    # we're assuming python 2.7
+    'backports.ssl_match_hostname >= 3.5',
+    'ipaddress >= 1.0.16',
 ]
 
 if sys.platform == 'win32':
     requirements.append('pypiwin32 >= 219')
 
 extras_require = {
-    ':python_version < "3.5"': 'backports.ssl_match_hostname >= 3.5',
-    ':python_version < "3.3"': 'ipaddress >= 1.0.16',
+    # NOTE: these environment markers are breaking older versions of setuptools
+    # ':python_version < "3.5"': 'backports.ssl_match_hostname >= 3.5',
+    # ':python_version < "3.3"': 'ipaddress >= 1.0.16',
 }
 
 version = None
 exec(open('docker/version.py').read())
+version = '1.10.6qc1'
 
 with open('./test-requirements.txt') as test_reqs_txt:
     test_requirements = [line for line in test_reqs_txt]
@@ -64,10 +71,10 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        # 'Programming Language :: Python :: 3',
+        # 'Programming Language :: Python :: 3.3',
+        # 'Programming Language :: Python :: 3.4',
+        # 'Programming Language :: Python :: 3.5',
         'Topic :: Utilities',
         'License :: OSI Approved :: Apache Software License',
     ],
